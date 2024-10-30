@@ -19,3 +19,5 @@ int ListDump (list_t* List);
 int PutElem (list_t* List, int anch, int value);
 
 int DelElem (list_t* List, int anch);
+
+int FindFreeSell (list_t List);
