@@ -18,15 +18,17 @@ int main ()
         List.next[i] = i + 1;
     }
     List.next[5] = 0;
-
-    ListDump (List);
+    for (int i = 2; i < 6; i++)
+    {
+        List.prev[i] = i - 1;
+    }
+    List.prev[1] = 0;
 
     PutElem (&List, 2, 25);
 
-    /*for (int i = 0; i < SIZE_LIST; i++)
-    {
-        printf ("data[%d] = %2d   |   next[%d] = %2d\n", i, List.data[i], i, List.next[i]);
-    }*/
+    ListDump (List);
+
+    //istDump (List);
 
     ListDtor (&List);
 
