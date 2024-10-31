@@ -37,8 +37,38 @@ int ListDtor (list_t* List)
 
 int ListDump (list_t List)
 {
+    FILE* log_file = fopen ("DumpGraph.dot", "wt");
+    fprintf (log_file, "digraph G {\n");
+    fprintf (log_file, "\t rankdir = LR;\n");
 
+    for (int i = 0; i < SIZE_LIST; i++)
+    {
+        fprintf (log_file, "\tnode%03d [shape = Mrecord; label = \"{%03d\\n%3d\\n%3d\\n%3d}\" ];\n", i, i, List.data[i], List.next[i], List.prev[i]);
+    }
+    fprintf (log_file, "\n");
+    for (int i = 1; i < SIZE_LIST - 1; i++)
+    {
+        fprintf (log_file, "\tnode%03d -> node%03d [weight=1000; color=white; ];\n", i, i + 1);
+    }
+    fprintf (log_file, "\n"); //next
+    for (int i = 1; i < SIZE_LIST - 1; i++)
+    {
+        if (List.next[i] != -1 && List.next[i] != 0)
+        {
+            fprintf (log_file, "\tnode%03d -> node%03d [ color=green; ];\n", i, List.next[i]);
+        }
+    }
+    fprintf (log_file, "\n"); //prev
+    for (int i = SIZE_LIST - 1; i > 1; i--)
+    {
+        if (List.prev[i] != -1)
+        {
+            fprintf (log_file, "\tnode%03d -> node%03d [ color=purple; ];\n", i, List.prev[i]);
+        }
+    }
 
+    fprintf (log_file, "}\n");
+    fclose (log_file);
     return 1;
 }
 
@@ -59,15 +89,14 @@ int PutElem (list_t* List, int anch, int value)
     return 1;
 }
 
-int DelElem (list_t* List, int anch)
+/*int DelElem (list_t* List, int anch)
 {
 
     return 1;
-}
+}*/
 
 int FindFreeSell (list_t List)
 {
-    int addr = -1;
     for (int index = 1; index < SIZE_LIST; index++)
     {
         if (List.next[index] == -1)

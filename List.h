@@ -14,7 +14,7 @@ int ListCtor (list_t* List);
 
 int ListDtor (list_t* List);
 
-int ListDump (list_t* List);
+int ListDump (list_t List);
 
 int PutElem (list_t* List, int anch, int value);
 
