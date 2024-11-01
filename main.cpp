@@ -25,7 +25,7 @@ int main ()
     List.prev[1] = 0;
 
     DelElem (&List, 2);
-
+    PutElem (&List, 0, 20);
 
     ListDump (List);
 

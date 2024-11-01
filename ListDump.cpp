@@ -31,7 +31,7 @@ int ListDump (list_t List)
     fprintf (log_file, "\n"); //prev
     for (int i = SIZE_LIST - 1; i > 1; i--)
     {
-        if (List.prev[i] != -1)
+        if (List.prev[i] != -1 && List.prev[i] != 0)
         {
             fprintf (log_file, "\tnode%03d -> node%03d [weight=0; color=purple; constraint=false; ];\n", i, List.prev[i]);
         }

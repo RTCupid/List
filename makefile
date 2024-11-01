@@ -18,11 +18,14 @@ run: a.exe DumpGraph.dot
 	./a.exe
 	dot -Tpng DumpGraph.dot -o DumpGraph.png
 
-a.exe: List.o Dump.o main.o
-	$(CC) main.o List.o Dump.o -o a.exe $(FLAGS)
+a.exe: List.o Dump.o Verificator.o main.o
+	$(CC) main.o List.o Dump.o Verificator.o -o a.exe $(FLAGS)
 
 Dump.o: ListDump.cpp List.h
 	$(CC) -c ListDump.cpp -o Dump.o $(FLAGS)
+
+Verificator.o: Verificator.cpp List.h
+	$(CC) -c Verificator.cpp -o Verificator.o $(FLAGS)
 
 List.o: List.cpp List.h
 	$(CC) -c List.cpp -o List.o $(FLAGS)

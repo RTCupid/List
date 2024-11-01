@@ -37,20 +37,36 @@ int ListDtor (list_t* List)
 
 int PutElem (list_t* List, int anch, int value)
 {
-    int addr = FindFreeSell (*List);
-    if (addr == -1)
+    int error = Verificator (*List, anch);
+    if (error)
+    {
+        return 0;
+    }
+
+
+
+    int indFree = FindFreeSell (*List);
+    printf ("indFree = %d\n", indFree);
+    if (indFree == -1)
     {
         printf ("not enough memory");
         assert (0);
     }
 
-    List->data[addr] = value;
+    List->data[indFree] = value;
 
-    List->next[addr] = List->next[anch];
-    List->next[anch] = addr;
+    if (anch == 0)
+    {
+        List->next[indFree] = 1;
+        List->prev[indFree] = 0;
+        return 1;
+    }
 
-    List->prev[List->next[addr]] = addr;
-    List->prev[addr] = anch;
+    List->next[indFree] = List->next[anch];
+    List->next[anch] = indFree;
+
+    List->prev[List->next[indFree]] = indFree;
+    List->prev[indFree] = anch;
 
     return 1;
 }
