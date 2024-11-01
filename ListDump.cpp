@@ -6,6 +6,39 @@
 
 err_t ListDump (list_t List)
 {
+    FILE* log_file = fopen ("Log_file.htm", "wt");
+    if (log_file == NULL)
+    {
+        printf ("fopen (Log_file.htm) returned NULL\n");
+        return LOG_FILE_UNCORRECT;
+    }
+    fprintf (log_file, "<pre>\n\n");
+
+    fprintf (log_file, "Dump of List:\n\n");
+
+    //frite text to log_file.htm
+
+    // text, it is text, i'm seriosly
+
+    //again text
+
+    //and some info
+
+    // oh it is picture
+
+    MakeDotFile (List);
+    system ("dot -Tpng DumpGraph.dot -o 111.png");
+
+    fprintf (log_file, "<img src = 111.png >\n");
+
+
+
+    fclose (log_file);
+    return LIST_OK;
+}
+
+err_t MakeDotFile (list_t List)
+{
     FILE* log_file = fopen ("DumpGraph.dot", "wt");
     fprintf (log_file, "digraph G {\n");
     fprintf (log_file, "\trankdir = LR;\n");
