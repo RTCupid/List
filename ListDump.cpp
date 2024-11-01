@@ -25,7 +25,7 @@ int ListDump (list_t List)
     {
         if (List.next[i] != -1 && List.next[i] != 0)
         {
-            fprintf (log_file, "\tnode%03d -> node%03d [color=green; constraint=false; ];\n", i, List.next[i]);
+            fprintf (log_file, "\tnode%03d -> node%03d [weight=0; color=green; ];\n", i, List.next[i]);
         }
     }
     fprintf (log_file, "\n"); //prev
@@ -33,7 +33,7 @@ int ListDump (list_t List)
     {
         if (List.prev[i] != -1)
         {
-            fprintf (log_file, "\tnode%03d -> node%03d [color=purple; constraint=false; ];\n", i, List.prev[i]);
+            fprintf (log_file, "\tnode%03d -> node%03d [weight=0; color=purple; constraint=false; ];\n", i, List.prev[i]);
         }
     }
 

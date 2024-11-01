@@ -57,7 +57,12 @@ int PutElem (list_t* List, int anch, int value)
 
 int DelElem (list_t* List, int anch)
 {
+    List->data[anch] *= -1;
+    List->next[List->prev[anch]] = List->next[anch];
+    List->prev[List->next[anch]] = List->prev[anch];
 
+    List->next[anch] = -1;
+    List->prev[anch] = -1;
 
     return 1;
 }
