@@ -4,7 +4,7 @@
 
 #include "List.h"
 
-int ListCtor (list_t* List)
+err_t ListCtor (list_t* List)
 {
     printf ("Start construction of list!\n");
 
@@ -19,12 +19,14 @@ int ListCtor (list_t* List)
         List->next[i] = -1;
         List->prev[i] = -1;
     }
+    List->next[0] = 0;
+    List->prev[0] = 0;
 
     printf ("List constructed!\n");
-    return 1;
+    return LIST_OK;
 }
 
-int ListDtor (list_t* List)
+err_t ListDtor (list_t* List)
 {
     free (List->data);
 
@@ -32,35 +34,26 @@ int ListDtor (list_t* List)
 
     free (List->prev);
 
-    return 1;
+    return LIST_OK;
 }
 
-int PutElem (list_t* List, int anch, int value)
+err_t ListAddAfter (list_t* List, int anch, int value)
 {
-    int error = Verificator (*List, anch);
+    err_t error = Verificator (*List, anch);
     if (error)
     {
-        return 0;
+        return error;
     }
-
-
 
     int indFree = FindFreeSell (*List);
     printf ("indFree = %d\n", indFree);
     if (indFree == -1)
     {
-        printf ("not enough memory");
-        assert (0);
+        printf ("ERROR: not enough memory");
+        return NOT_ENOUGH_MEMORY;
     }
 
     List->data[indFree] = value;
-
-    if (anch == 0)
-    {
-        List->next[indFree] = 1;
-        List->prev[indFree] = 0;
-        return 1;
-    }
 
     List->next[indFree] = List->next[anch];
     List->next[anch] = indFree;
@@ -68,11 +61,32 @@ int PutElem (list_t* List, int anch, int value)
     List->prev[List->next[indFree]] = indFree;
     List->prev[indFree] = anch;
 
-    return 1;
+    return LIST_OK;
+}
+err_t ListAddFairy (list_t* List, int value)
+{
+    err_t error = ListAddAfter (List, 0, value);
+    return error;
 }
 
-int DelElem (list_t* List, int anch)
+err_t ListAddTail (list_t* List, int value)
 {
+    err_t error = ListAddAfter (List, List->prev[0], value);
+    return error;
+}
+
+err_t ListDel (list_t* List, int anch)
+{
+    err_t error = Verificator (*List, anch);
+    if (error)
+    {
+        return error;
+    }
+    if (anch == 0)
+    {
+        printf ("ERROR: anchor is null\n");
+        return NULL_ANCHOR;
+    }
     List->data[anch] *= -1;
     List->next[List->prev[anch]] = List->next[anch];
     List->prev[List->next[anch]] = List->prev[anch];
@@ -80,7 +94,7 @@ int DelElem (list_t* List, int anch)
     List->next[anch] = -1;
     List->prev[anch] = -1;
 
-    return 1;
+    return LIST_OK;
 }
 
 int FindFreeSell (list_t List)

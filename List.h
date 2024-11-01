@@ -9,19 +9,31 @@
         int tail;
     } list_t;
 
+    enum err_t
+    {
+        LIST_OK,
+        UNCORRECT_ANCHOR = 1,
+        NULL_ANCHOR,
+        NOT_ENOUGH_MEMORY,
+    };
+
     const int SIZE_LIST = 10;
 
-    int ListCtor (list_t* List);
+    err_t ListCtor (list_t* List);
 
-    int ListDtor (list_t* List);
+    err_t ListDtor (list_t* List);
 
-    int ListDump (list_t List);
+    err_t ListDump (list_t List);
 
-    int Verificator (list_t List, int anch);
+    err_t Verificator (list_t List, int anch);
 
-    int PutElem (list_t* List, int anch, int value);
+    err_t ListAddAfter (list_t* List, int anch, int value);
 
-    int DelElem (list_t* List, int anch);
+    err_t ListAddFairy (list_t* List, int value);
+
+    err_t ListAddTail (list_t* List, int value);
+
+    err_t ListDel (list_t* List, int anch);
 
     int FindFreeSell (list_t List);
 #endif

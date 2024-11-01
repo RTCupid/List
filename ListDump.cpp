@@ -4,7 +4,7 @@
 
 #include "List.h"
 
-int ListDump (list_t List)
+err_t ListDump (list_t List)
 {
     FILE* log_file = fopen ("DumpGraph.dot", "wt");
     fprintf (log_file, "digraph G {\n");
@@ -29,7 +29,7 @@ int ListDump (list_t List)
         }
     }
     fprintf (log_file, "\n"); //prev
-    for (int i = SIZE_LIST - 1; i > 1; i--)
+    for (int i = SIZE_LIST - 1; i > 0; i--)
     {
         if (List.prev[i] != -1 && List.prev[i] != 0)
         {
@@ -39,5 +39,5 @@ int ListDump (list_t List)
 
     fprintf (log_file, "}\n");
     fclose (log_file);
-    return 1;
+    return LIST_OK;
 }

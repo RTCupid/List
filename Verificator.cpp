@@ -3,12 +3,12 @@
 #include <assert.h>
 
 #include "List.h"
-#include "Error.h"
 
-int Verificator (list_t List, int anch)
+err_t Verificator (list_t List, int anch)
 {
     printf ("Verify:\n");
     printf ("anch = %d\n", anch);
+
     if (List.next[anch] == -1)
     {
         printf ("next[anch] = -1\n");
@@ -21,5 +21,5 @@ int Verificator (list_t List, int anch)
         printf ("ERROR: uncorrect anchor\n");
         return UNCORRECT_ANCHOR;
     }
-    return 0;
+    return LIST_OK;
 }

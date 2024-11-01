@@ -9,27 +9,15 @@ int main ()
     list_t List = {};
     ListCtor (&List);
 
-    for (int i = 1; i < 6; i++)
-    {
-        List.data[i] = i * 10;
-    }
-    for (int i = 1; i < 5; i++)
-    {
-        List.next[i] = i + 1;
-    }
-    List.next[5] = 0;
-    for (int i = 2; i < 6; i++)
-    {
-        List.prev[i] = i - 1;
-    }
-    List.prev[1] = 0;
+    ListAddTail (&List, 228);
 
-    DelElem (&List, 2);
-    PutElem (&List, 0, 20);
+    ListAddTail (&List, 229);
+
+    ListAddTail (&List, 230);
+
+    ListAddFairy (&List, 900);
 
     ListDump (List);
-
-    //istDump (List);
 
     ListDtor (&List);
 
