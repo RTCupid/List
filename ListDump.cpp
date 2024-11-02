@@ -4,6 +4,8 @@
 
 #include "List.h"
 
+//static char* numpng = NULL;
+
 err_t ListDump (list_t List)
 {
     FILE* log_file = fopen ("Log_file.htm", "wt");
@@ -14,18 +16,9 @@ err_t ListDump (list_t List)
     }
     fprintf (log_file, "<pre>\n\n");
 
-    fprintf (log_file, "Dump of List:\n\n");
-
-    //frite text to log_file.htm
-
-    // text, it is text, i'm seriosly
-
-    //again text
-
-    //and some info
+    fprintf (log_file, "<FONT SIZE=\"6\"> Dump of List:\n\n");
 
     // oh it is picture
-
     MakeDotFile (List);
     system ("dot -Tpng DumpGraph.dot -o 111.png");
 

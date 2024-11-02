@@ -14,9 +14,8 @@ FLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
 	nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,$\
 	signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
-run: a.exe DumpGraph.dot
+run: a.exe
 	./a.exe
-	dot -Tpng DumpGraph.dot -o DumpGraph.png
 
 a.exe: List.o Dump.o Verificator.o main.o
 	$(CC) main.o List.o Dump.o Verificator.o -o a.exe $(FLAGS)

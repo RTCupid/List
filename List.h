@@ -39,4 +39,6 @@
     err_t ListDel (list_t* List, int anch);
 
     int FindFreeSell (list_t List);
+
+    void Pause ();
 #endif

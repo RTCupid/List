@@ -23,6 +23,8 @@ err_t ListCtor (list_t* List)
     List->prev[0] = 0;
 
     printf ("List constructed!\n");
+    ListDump (*List);
+    Pause ();
     return LIST_OK;
 }
 
@@ -61,6 +63,8 @@ err_t ListAddAfter (list_t* List, int anch, int value)
     List->prev[List->next[indFree]] = indFree;
     List->prev[indFree] = anch;
 
+    ListDump (*List);
+    Pause ();
     return LIST_OK;
 }
 err_t ListAddFairy (list_t* List, int value)
@@ -94,6 +98,8 @@ err_t ListDel (list_t* List, int anch)
     List->next[anch] = -1;
     List->prev[anch] = -1;
 
+    ListDump (*List);
+    Pause ();
     return LIST_OK;
 }
 
@@ -107,4 +113,10 @@ int FindFreeSell (list_t List)
         }
     }
     return -1;
+}
+
+void Pause ()
+{
+    printf ("Enter to continue...\n");
+    getchar ();
 }

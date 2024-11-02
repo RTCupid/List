@@ -13,12 +13,9 @@ int main ()
 
     ListAddTail (&List, 229);
 
-    ListAddTail (&List, 230);
-
     ListAddFairy (&List, 900);
 
     ListDump (List);
-
     ListDtor (&List);
 
     printf ("\n# End of programm!\n");

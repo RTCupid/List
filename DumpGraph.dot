@@ -1,11 +1,11 @@
 digraph G {
 	rankdir = LR;
 	bgcolor="#FDAB57"
-	node000 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 000} | {value:   0} | {next:   4} | {prev:   3} " ];
-	node001 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 001} | {value: 228} | {next:   2} | {prev:   4} " ];
-	node002 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 002} | {value: 229} | {next:   3} | {prev:   1} " ];
-	node003 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 003} | {value: 230} | {next:   0} | {prev:   2} " ];
-	node004 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 004} | {value: 900} | {next:   1} | {prev:   0} " ];
+	node000 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 000} | {value:   0} | {next:   3} | {prev:   2} " ];
+	node001 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 001} | {value: 228} | {next:   2} | {prev:   3} " ];
+	node002 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 002} | {value: 229} | {next:   0} | {prev:   1} " ];
+	node003 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 003} | {value: 900} | {next:   1} | {prev:   0} " ];
+	node004 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 004} | {value:   0} | {next:  -1} | {prev:  -1} " ];
 	node005 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 005} | {value:   0} | {next:  -1} | {prev:  -1} " ];
 	node006 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 006} | {value:   0} | {next:  -1} | {prev:  -1} " ];
 	node007 [shape=Mrecord; style=filled; color="#F7DC98"; label = " { ip: 007} | {value:   0} | {next:  -1} | {prev:  -1} " ];
@@ -23,10 +23,8 @@ digraph G {
 	node008 -> node009 [style=bold; weight=1000; color=chocolate1; ];
 
 	node001 -> node002 [weight=0; color=green; ];
-	node002 -> node003 [weight=0; color=green; ];
-	node004 -> node001 [weight=0; color=green; ];
+	node003 -> node001 [weight=0; color=green; ];
 
-	node003 -> node002 [weight=0; color=purple; constraint=false; ];
 	node002 -> node001 [weight=0; color=purple; constraint=false; ];
-	node001 -> node004 [weight=0; color=purple; constraint=false; ];
+	node001 -> node003 [weight=0; color=purple; constraint=false; ];
 }
