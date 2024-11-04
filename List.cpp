@@ -6,7 +6,16 @@
 
 err_t ListCtor (list_t* List)
 {
-    printf ("Start construction of list!\n");
+    List->log_file = fopen ("Log_file.htm", "wt");
+    if (List->log_file == NULL)
+    {
+        printf ("fopen (Log_file.htm) returned NULL\n");
+        return LOG_FILE_UNCORRECT;
+    }
+
+    fprintf (List->log_file, "<FONT SIZE=\"6\"><pre>\n\n");
+
+    fprintf (List->log_file, "Start construction of list!\n");
 
     List->data = (int*) calloc (SIZE_LIST, sizeof (int));
 
@@ -22,19 +31,24 @@ err_t ListCtor (list_t* List)
     List->next[0] = 0;
     List->prev[0] = 0;
 
-    printf ("List constructed!\n");
+    fprintf (List->log_file, "List constructed!\n");
     ListDump (*List);
-    Pause ();
+    PS Pause ();
     return LIST_OK;
 }
 
 err_t ListDtor (list_t* List)
 {
+    fclose (List->log_file);
+
     free (List->data);
+    List->data = NULL;
 
     free (List->next);
+    List->next = NULL;
 
     free (List->prev);
+    List->prev = NULL;
 
     return LIST_OK;
 }
@@ -48,10 +62,10 @@ err_t ListAddAfter (list_t* List, int anch, int value)
     }
 
     int indFree = FindFreeSell (*List);
-    printf ("indFree = %d\n", indFree);
+    fprintf (List->log_file, "indFree = %d\n", indFree);
     if (indFree == -1)
     {
-        printf ("ERROR: not enough memory");
+        fprintf (List->log_file, "ERROR: not enough memory");
         return NOT_ENOUGH_MEMORY;
     }
 
@@ -64,7 +78,7 @@ err_t ListAddAfter (list_t* List, int anch, int value)
     List->prev[indFree] = anch;
 
     ListDump (*List);
-    Pause ();
+    PS Pause ();
     return LIST_OK;
 }
 err_t ListAddFairy (list_t* List, int value)
@@ -88,7 +102,7 @@ err_t ListDel (list_t* List, int anch)
     }
     if (anch == 0)
     {
-        printf ("ERROR: anchor is null\n");
+        fprintf (List->log_file, "ERROR: anchor is null\n");
         return NULL_ANCHOR;
     }
     List->data[anch] *= -1;
@@ -99,7 +113,7 @@ err_t ListDel (list_t* List, int anch)
     List->prev[anch] = -1;
 
     ListDump (*List);
-    Pause ();
+    PS Pause ();
     return LIST_OK;
 }
 

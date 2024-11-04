@@ -1,5 +1,7 @@
 #ifndef LIST_H
     #define LIST_H
+
+    #define PS if(0)
     typedef struct
     {
         int* data;
@@ -7,6 +9,7 @@
         int* prev;
         int fairy;
         int tail;
+        FILE* log_file;
     } list_t;
 
     enum err_t
@@ -27,6 +30,8 @@
     err_t ListDump (list_t List);
 
     err_t MakeDotFile (list_t List);
+
+    void PrintNode (int i, list_t List, FILE* dot_file, char color[12]);
 
     err_t Verificator (list_t List, int anch);
 

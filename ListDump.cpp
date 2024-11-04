@@ -4,66 +4,86 @@
 
 #include "List.h"
 
-//static char* numpng = NULL;
+static int numpng = 111;
 
 err_t ListDump (list_t List)
 {
-    FILE* log_file = fopen ("Log_file.htm", "wt");
-    if (log_file == NULL)
-    {
-        printf ("fopen (Log_file.htm) returned NULL\n");
-        return LOG_FILE_UNCORRECT;
-    }
-    fprintf (log_file, "<pre>\n\n");
-
-    fprintf (log_file, "<FONT SIZE=\"6\"> Dump of List:\n\n");
+    fprintf (List.log_file, "Dump of List:\n\n");
 
     // oh it is picture
     MakeDotFile (List);
-    system ("dot -Tpng DumpGraph.dot -o 111.png");
 
-    fprintf (log_file, "<img src = 111.png >\n");
+    char namepng[4] = {};
+    sprintf (namepng, "%d", numpng);
+    numpng++;
+    char systemCall[100] = {};
+    sprintf (systemCall, "dot -Tpng DumpGraph.dot > %s.png", namepng);
+    system (systemCall);
 
+    fprintf (List.log_file, "<img src = %s.png >\n\n", namepng);
 
-
-    fclose (log_file);
     return LIST_OK;
 }
 
 err_t MakeDotFile (list_t List)
 {
-    FILE* log_file = fopen ("DumpGraph.dot", "wt");
-    fprintf (log_file, "digraph G {\n");
-    fprintf (log_file, "\trankdir = LR;\n");
-    fprintf (log_file, "\tbgcolor=\"#FDAB57\"\n");
+    FILE* dot_file = fopen ("DumpGraph.dot", "wt");
 
-    for (int i = 0; i < SIZE_LIST; i++)
+    fprintf (dot_file, "digraph G {\n");
+    fprintf (dot_file, "\trankdir = LR;\n");
+    fprintf (dot_file, "\tbgcolor=\"#FBEEC1\"\n");
+
+    fprintf (dot_file, "\tnode000 [shape=Mrecord; style=filled; color=\"#DAAD86\";"
+                       " label = \"{ ip: %03d}  | {value: %3d} |"
+                                  "{Fairy: %3d} | {Tail: %3d} \" ];\n",
+                                   0, List.data[0], List.next[0], List.prev[0]);
+
+    for (int i = 1; i < SIZE_LIST; i++)
     {
-        fprintf (log_file, "\tnode%03d [shape=Mrecord; style=filled; color=\"#F7DC98\"; label = \" { ip: %03d} | {value: %3d} | {next: %3d} | {prev: %3d} \" ];\n", i, i, List.data[i], List.next[i], List.prev[i]);
+        if (List.prev[i] == -1)
+        {
+            char color[] = "\"#659DBD\"";
+            PrintNode (i, List, dot_file, color);
+        }
+        else
+        {
+            char color[] = "\"#BC986A\"";
+            PrintNode (i, List, dot_file, color);
+        }
     }
-    fprintf (log_file, "\n");
+    fprintf (dot_file, "\n");
     for (int i = 0; i < SIZE_LIST - 1; i++)
     {
-        fprintf (log_file, "\tnode%03d -> node%03d [style=bold; weight=1000; color=chocolate1; ];\n", i, i + 1);
+        fprintf (dot_file, "\tnode%03d -> node%03d [style=bold; weight=1000; color=\"#FBEEC1\"; ];\n", i, i + 1);
     }
-    fprintf (log_file, "\n"); //next
+    fprintf (dot_file, "\n"); //next
     for (int i = 1; i < SIZE_LIST - 1; i++)
     {
         if (List.next[i] != -1 && List.next[i] != 0)
         {
-            fprintf (log_file, "\tnode%03d -> node%03d [weight=0; color=green; ];\n", i, List.next[i]);
+            fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#999900\"; ];\n", i, List.next[i]);
         }
     }
-    fprintf (log_file, "\n"); //prev
+    fprintf (dot_file, "\n"); //prev
     for (int i = SIZE_LIST - 1; i > 0; i--)
     {
         if (List.prev[i] != -1 && List.prev[i] != 0)
         {
-            fprintf (log_file, "\tnode%03d -> node%03d [weight=0; color=purple; constraint=false; ];\n", i, List.prev[i]);
+            fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#DAAD86\"; constraint=false; ];\n", i, List.prev[i]);
         }
     }
 
-    fprintf (log_file, "}\n");
-    fclose (log_file);
+    fprintf (dot_file, "}\n");
+    fclose (dot_file);
     return LIST_OK;
+}
+
+void PrintNode (int i, list_t List, FILE* dot_file, char color[12])
+{
+    fprintf (dot_file, "\tnode%03d [shape=Mrecord; style=filled; color=%s;"
+                               " label = \"{ ip: %03d}  |"
+                                          "{value: %3d} |"
+                                          "{next: %3d} |"
+                                          "{prev: %3d} \" ];\n",
+                                i, color, i, List.data[i], List.next[i], List.prev[i]);
 }
