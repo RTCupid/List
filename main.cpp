@@ -13,11 +13,21 @@ int main ()
 
     ListAddTail (&List, 229);
 
-    ListAddTail (&List, 230);
+    //ListAddTail (&List, 230);
 
     ListAddTail (&List, 231);
 
     ListAddFairy (&List, 900);
+
+    ListAddTail (&List, 231);
+    ListAddTail (&List, 231);
+    ListAddTail (&List, 231);
+    ListAddTail (&List, 231);
+    ListAddTail (&List, 231);
+    ListAddTail (&List, 231);
+    ListAddTail (&List, 231);
+    ListAddTail (&List, 231);
+    ListAddTail (&List, 231);
 
     ListDel (&List, 3);
 

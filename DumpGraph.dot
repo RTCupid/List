@@ -1,16 +1,26 @@
 digraph G {
 	rankdir = LR;
 	bgcolor="#FBEEC1"
-	node000 [shape=Mrecord; style=filled; color="#DAAD86"; label = "{ ip: 000}  | {value:   0} |{Fairy:   3} | {Tail:   4} " ];
-	node001 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 001}  |{value: 228} |{next:   2} |{prev:   5} " ];
-	node002 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 002}  |{value: 229} |{next:   4} |{prev:   1} " ];
-	node003 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 003}  |{value: 809} |{next:   5} |{prev:   0} " ];
-	node004 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 004}  |{value: 231} |{next:   0} |{prev:   2} " ];
-	node005 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 005}  |{value: 900} |{next:   1} |{prev:   3} " ];
-	node006 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 006}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
-	node007 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 007}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
-	node008 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 008}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
-	node009 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 009}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node000 [shape=Mrecord; style=filled; color="#DAAD86"; label = "{ ip: 000}  | {value:   0} |{Fairy:   3} | {Tail:  13} " ];
+	node001 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 001}  |{value: 228} |{next:   2} |{prev:   4} " ];
+	node002 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 002}  |{value: 229} |{next:   5} |{prev:   1} " ];
+	node003 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 003}  |{value: 809} |{next:   4} |{prev:   0} " ];
+	node004 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 004}  |{value: 900} |{next:   1} |{prev:   3} " ];
+	node005 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 005}  |{value: 231} |{next:   6} |{prev:   2} " ];
+	node006 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 006}  |{value: 231} |{next:   7} |{prev:   5} " ];
+	node007 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 007}  |{value: 231} |{next:   8} |{prev:   6} " ];
+	node008 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 008}  |{value: 231} |{next:   9} |{prev:   7} " ];
+	node009 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 009}  |{value: 231} |{next:  10} |{prev:   8} " ];
+	node010 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 010}  |{value: 231} |{next:  11} |{prev:   9} " ];
+	node011 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 011}  |{value: 231} |{next:  12} |{prev:  10} " ];
+	node012 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 012}  |{value: 231} |{next:  13} |{prev:  11} " ];
+	node013 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 013}  |{value: 231} |{next:   0} |{prev:  12} " ];
+	node014 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 014}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node015 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 015}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node016 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 016}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node017 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 017}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node018 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 018}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node019 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 019}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
 
 	node000 -> node001 [style=bold; weight=1000; color="#FBEEC1"; ];
 	node001 -> node002 [style=bold; weight=1000; color="#FBEEC1"; ];
@@ -21,14 +31,40 @@ digraph G {
 	node006 -> node007 [style=bold; weight=1000; color="#FBEEC1"; ];
 	node007 -> node008 [style=bold; weight=1000; color="#FBEEC1"; ];
 	node008 -> node009 [style=bold; weight=1000; color="#FBEEC1"; ];
+	node009 -> node010 [style=bold; weight=1000; color="#FBEEC1"; ];
+	node010 -> node011 [style=bold; weight=1000; color="#FBEEC1"; ];
+	node011 -> node012 [style=bold; weight=1000; color="#FBEEC1"; ];
+	node012 -> node013 [style=bold; weight=1000; color="#FBEEC1"; ];
+	node013 -> node014 [style=bold; weight=1000; color="#FBEEC1"; ];
+	node014 -> node015 [style=bold; weight=1000; color="#FBEEC1"; ];
+	node015 -> node016 [style=bold; weight=1000; color="#FBEEC1"; ];
+	node016 -> node017 [style=bold; weight=1000; color="#FBEEC1"; ];
+	node017 -> node018 [style=bold; weight=1000; color="#FBEEC1"; ];
+	node018 -> node019 [style=bold; weight=1000; color="#FBEEC1"; ];
 
 	node001 -> node002 [weight=0; color="#999900"; ];
-	node002 -> node004 [weight=0; color="#999900"; ];
-	node003 -> node005 [weight=0; color="#999900"; ];
-	node005 -> node001 [weight=0; color="#999900"; ];
+	node002 -> node005 [weight=0; color="#999900"; ];
+	node003 -> node004 [weight=0; color="#999900"; ];
+	node004 -> node001 [weight=0; color="#999900"; ];
+	node005 -> node006 [weight=0; color="#999900"; ];
+	node006 -> node007 [weight=0; color="#999900"; ];
+	node007 -> node008 [weight=0; color="#999900"; ];
+	node008 -> node009 [weight=0; color="#999900"; ];
+	node009 -> node010 [weight=0; color="#999900"; ];
+	node010 -> node011 [weight=0; color="#999900"; ];
+	node011 -> node012 [weight=0; color="#999900"; ];
+	node012 -> node013 [weight=0; color="#999900"; ];
 
-	node005 -> node003 [weight=0; color="#DAAD86"; constraint=false; ];
-	node004 -> node002 [weight=0; color="#DAAD86"; constraint=false; ];
+	node013 -> node012 [weight=0; color="#DAAD86"; constraint=false; ];
+	node012 -> node011 [weight=0; color="#DAAD86"; constraint=false; ];
+	node011 -> node010 [weight=0; color="#DAAD86"; constraint=false; ];
+	node010 -> node009 [weight=0; color="#DAAD86"; constraint=false; ];
+	node009 -> node008 [weight=0; color="#DAAD86"; constraint=false; ];
+	node008 -> node007 [weight=0; color="#DAAD86"; constraint=false; ];
+	node007 -> node006 [weight=0; color="#DAAD86"; constraint=false; ];
+	node006 -> node005 [weight=0; color="#DAAD86"; constraint=false; ];
+	node005 -> node002 [weight=0; color="#DAAD86"; constraint=false; ];
+	node004 -> node003 [weight=0; color="#DAAD86"; constraint=false; ];
 	node002 -> node001 [weight=0; color="#DAAD86"; constraint=false; ];
-	node001 -> node005 [weight=0; color="#DAAD86"; constraint=false; ];
+	node001 -> node004 [weight=0; color="#DAAD86"; constraint=false; ];
 }

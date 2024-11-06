@@ -6,8 +6,8 @@
 
 err_t Verificator (list_t List, int anch)
 {
-    fprintf (List.log_file, "Verify:\n");
-    fprintf (List.log_file, "anch = %d\n", anch);
+    //fprintf (List.log_file, "Verify:\n");
+    //fprintf (List.log_file, "anch = %d\n", anch);
 
     if (List.next[anch] == -1)
     {
@@ -21,5 +21,13 @@ err_t Verificator (list_t List, int anch)
         fprintf (List.log_file, "ERROR: uncorrect anchor\n");
         return UNCORRECT_ANCHOR;
     }
+    if (anch != List.prev[List.next[anch]])
+    {
+        fprintf (List.log_file, "ERROR: next[anch] = <%d>\n prev[next[anch] = <%d>\n",
+                List.next[anch], List.prev[List.next[anch]]);
+        return DESYNCHRON_NEXT_PREV;
+    }
+
+
     return LIST_OK;
 }

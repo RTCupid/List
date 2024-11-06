@@ -32,15 +32,15 @@ err_t ListCtor (list_t* List)
     List->prev[0] = 0;
 
     fprintf (List->log_file, "List constructed!\n");
-    ListDump (*List);
+    char nameFunc[50] = {};
+    sprintf (nameFunc, "ListCtor");
+    ListDump (*List, nameFunc);
     PS Pause ();
     return LIST_OK;
 }
 
 err_t ListDtor (list_t* List)
 {
-    fclose (List->log_file);
-
     free (List->data);
     List->data = NULL;
 
@@ -49,6 +49,10 @@ err_t ListDtor (list_t* List)
 
     free (List->prev);
     List->prev = NULL;
+
+    fprintf (List->log_file, "<center>List is destroy!</center>\n");
+
+    fclose (List->log_file);
 
     return LIST_OK;
 }
@@ -62,10 +66,13 @@ err_t ListAddAfter (list_t* List, int anch, int value)
     }
 
     int indFree = FindFreeSell (*List);
-    fprintf (List->log_file, "indFree = %d\n", indFree);
+    //fprintf (List->log_file, "indFree = %d\n", indFree);
     if (indFree == -1)
     {
-        fprintf (List->log_file, "ERROR: not enough memory");
+        char nameError[100] = {};
+        sprintf (nameError, "Func ListAddAfter anch = %d:\n"
+                            "ERROR: not enough memory", anch);
+        ListDump (*List, nameError);
         return NOT_ENOUGH_MEMORY;
     }
 
@@ -77,7 +84,9 @@ err_t ListAddAfter (list_t* List, int anch, int value)
     List->prev[List->next[indFree]] = indFree;
     List->prev[indFree] = anch;
 
-    ListDump (*List);
+    char nameFunc[50] = {};
+    sprintf (nameFunc, "ListAddAfter anch = %d", anch);
+    ListDump (*List, nameFunc);
     PS Pause ();
     return LIST_OK;
 }
@@ -112,7 +121,9 @@ err_t ListDel (list_t* List, int anch)
     List->next[anch] = -1;
     List->prev[anch] = -1;
 
-    ListDump (*List);
+    char nameFunc[50] = {};
+    sprintf (nameFunc, "ListDel anch = %d", anch);
+    ListDump (*List, nameFunc);
     PS Pause ();
     return LIST_OK;
 }

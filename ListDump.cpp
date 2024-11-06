@@ -6,9 +6,10 @@
 
 static int numpng = 111;
 
-err_t ListDump (list_t List)
+err_t ListDump (list_t List, char* nameLastFunc)
 {
-    fprintf (List.log_file, "Dump of List:\n\n");
+    fprintf (List.log_file, "<center>Dump of List:</center><FONT SIZE=\"5\">\n");
+    fprintf (List.log_file, "<center>Last operation \"%s\"<FONT SIZE=\"6\"></center>\n\n", nameLastFunc);
 
     // oh it is picture
     MakeDotFile (List);
@@ -17,7 +18,8 @@ err_t ListDump (list_t List)
     sprintf (namepng, "%d", numpng);
     numpng++;
     char systemCall[100] = {};
-    sprintf (systemCall, "dot -Tpng DumpGraph.dot > %s.png", namepng);
+    sprintf (systemCall, "dot -Tpng DumpGraph.dot -o %s.png", namepng);
+    //printf ("systemCall = <<%s>>\n", systemCall);
     system (systemCall);
 
     fprintf (List.log_file, "<img src = %s.png >\n\n", namepng);

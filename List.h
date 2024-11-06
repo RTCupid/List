@@ -19,6 +19,7 @@
         NULL_ANCHOR,
         NOT_ENOUGH_MEMORY,
         LOG_FILE_UNCORRECT,
+        DESYNCHRON_NEXT_PREV,
     };
 
     const int SIZE_LIST = 10;
@@ -27,7 +28,7 @@
 
     err_t ListDtor (list_t* List);
 
-    err_t ListDump (list_t List);
+    err_t ListDump (list_t List, char* nameLastFunc);
 
     err_t MakeDotFile (list_t List);
 
