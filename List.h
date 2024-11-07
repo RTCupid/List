@@ -53,7 +53,5 @@
 
     int FindInListValue (list_t List, int value);
 
-    //int FindInListIndex (list_t List, int value);
-
     void Pause ();
 #endif
