@@ -7,8 +7,6 @@
         int* data;
         int* next;
         int* prev;
-        int fairy;
-        int tail;
         FILE* log_file;
     } list_t;
 
@@ -35,7 +33,7 @@
 
     void PrintNode (int i, list_t List, FILE* dot_file, char color[12]);
 
-    err_t Verificator (list_t List, int anch);
+    err_t Verificator (list_t List);
 
     err_t ListAddAfter (list_t* List, int anch, int value);
 

@@ -59,10 +59,17 @@ err_t ListDtor (list_t* List)
 
 err_t ListAddAfter (list_t* List, int anch, int value)
 {
-    err_t error = Verificator (*List, anch);
+    err_t error = Verificator (*List);
     if (error)
     {
         return error;
+    }
+
+    if (List->prev[anch] == -1)
+    {
+        fprintf (List->log_file, "prev[%d] = -1\n", anch);
+        fprintf (List->log_file, "ERROR: uncorrect anchor\n");
+        return UNCORRECT_ANCHOR;
     }
 
     int indFree = FindFreeSell (*List);
@@ -110,16 +117,23 @@ err_t ListAddBefore (list_t* List, int anch, int value)
 
 err_t ListDel (list_t* List, int anch)
 {
-    err_t error = Verificator (*List, anch);
+    err_t error = Verificator (*List);
     if (error)
     {
         return error;
+    }
+    if (List->prev[anch] == -1)
+    {
+        fprintf (List->log_file, "prev[%d] = -1\n", anch);
+        fprintf (List->log_file, "ERROR: uncorrect anchor\n");
+        return UNCORRECT_ANCHOR;
     }
     if (anch == 0)
     {
         fprintf (List->log_file, "ERROR: anchor is null\n");
         return NULL_ANCHOR;
     }
+
     List->data[anch] *= -1;
     List->next[List->prev[anch]] = List->next[anch];
     List->prev[List->next[anch]] = List->prev[anch];
@@ -164,7 +178,7 @@ int FindFreeSell (list_t List)
 
 int FindInListValue (list_t List, int value)
 {
-    err_t error = Verificator (List, 0);
+    err_t error = Verificator (List);
     if (error)
     {
         return error;
