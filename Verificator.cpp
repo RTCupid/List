@@ -27,6 +27,28 @@ err_t Verificator (list_t List, int anch)
                 List.next[anch], List.prev[List.next[anch]]);
         return DESYNCHRON_NEXT_PREV;
     }
+    if (anch != List.next[List.prev[anch]])
+    {
+        fprintf (List.log_file, "ERROR: prev[%d] = <%d>\n next[prev[%d] = <%d>\n",
+                anch, List.prev[anch], anch, List.next[List.prev[anch]]);
+        return DESYNCHRON_NEXT_PREV;
+    }
+    int index = 0;
+    int size = 0;
+    while (1)
+    {
+        if (List.next[index] == 0)
+        {
+            break;
+        }
+        index = List.next[index];
+        size++;
+        if (index >= SIZE_LIST)
+        {
+            printf ("ERROR: The list is looped\n");
+            return LIST_IS_LOOP;
+        }
+    }
 
 
     return LIST_OK;

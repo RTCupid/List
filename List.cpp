@@ -102,6 +102,12 @@ err_t ListAddTail (list_t* List, int value)
     return error;
 }
 
+err_t ListAddBefore (list_t* List, int anch, int value)
+{
+    err_t error = ListAddAfter (List, List->prev[anch], value);
+    return error;
+}
+
 err_t ListDel (list_t* List, int anch)
 {
     err_t error = Verificator (*List, anch);
@@ -128,6 +134,22 @@ err_t ListDel (list_t* List, int anch)
     return LIST_OK;
 }
 
+err_t ClearList (list_t* List)
+{
+    List->next[0] = 0;
+    List->prev[0] = 0;
+    for (int i = 1; i < SIZE_LIST; i++)
+    {
+        List->data[i] = -1;
+        List->next[i] = -1;
+        List->prev[i] = -1;
+    }
+    char nameFunc[50] = {};
+    sprintf (nameFunc, "ClearList");
+    ListDump (*List, nameFunc);
+    return LIST_OK;
+}
+
 int FindFreeSell (list_t List)
 {
     for (int index = 1; index < SIZE_LIST; index++)
@@ -138,6 +160,42 @@ int FindFreeSell (list_t List)
         }
     }
     return -1;
+}
+
+int FindInListValue (list_t List, int value)
+{
+    err_t error = Verificator (List, 0);
+    if (error)
+    {
+        return error;
+    }
+
+    int index = 0;
+    while (1)
+    {
+        if (List.next[index] == 0)
+        {
+            break;
+        }
+        if (List.data[index] == value)
+        {
+            char nameFunc[50] = {};
+            sprintf (nameFunc, "FindInListValue value = <%d>", value);
+            ListDump (List, nameFunc);
+            fprintf (List.log_file, "index of value<%d> = %d\n", value, index);
+            return index;
+        }
+        else
+        {
+            index = List.next[index];
+        }
+    }
+
+    char nameFunc[50] = {};
+    sprintf (nameFunc, "FindInListValue value = <%d>", value);
+    ListDump (List, nameFunc);
+    fprintf (List.log_file, "value <%d> was not found in the List\n", value);
+    return 0;
 }
 
 void Pause ()

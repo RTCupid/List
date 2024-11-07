@@ -8,8 +8,8 @@ static int numpng = 111;
 
 err_t ListDump (list_t List, char* nameLastFunc)
 {
-    fprintf (List.log_file, "<center>Dump of List:</center><FONT SIZE=\"5\">\n");
-    fprintf (List.log_file, "<center>Last operation \"%s\"<FONT SIZE=\"6\"></center>\n\n", nameLastFunc);
+    fprintf (List.log_file, "<FONT SIZE=\"6\"><center>Dump of List:</center><FONT SIZE=\"5\">\n");
+    fprintf (List.log_file, "<center>Last operation \"%s\"</center>\n\n", nameLastFunc);
 
     // oh it is picture
     MakeDotFile (List);

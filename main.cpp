@@ -13,25 +13,27 @@ int main ()
 
     ListAddTail (&List, 229);
 
-    //ListAddTail (&List, 230);
+    ListAddTail (&List, 230);
 
     ListAddTail (&List, 231);
 
     ListAddFairy (&List, 900);
 
     ListAddTail (&List, 231);
-    ListAddTail (&List, 231);
-    ListAddTail (&List, 231);
-    ListAddTail (&List, 231);
-    ListAddTail (&List, 231);
-    ListAddTail (&List, 231);
-    ListAddTail (&List, 231);
-    ListAddTail (&List, 231);
-    ListAddTail (&List, 231);
 
     ListDel (&List, 3);
 
     ListAddFairy (&List, 809);
+
+    int index = FindInListValue (List, 900);
+    //fprintf (List.log_file, "index of 900 = %d\n", index);
+    FindInListValue (List, 1900);
+
+    ListAddBefore (&List, index, 905);
+
+    ClearList (&List);
+
+    ListAddFairy (&List, 910);
 
     ListDtor (&List);
 

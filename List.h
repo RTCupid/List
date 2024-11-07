@@ -20,6 +20,7 @@
         NOT_ENOUGH_MEMORY,
         LOG_FILE_UNCORRECT,
         DESYNCHRON_NEXT_PREV,
+        LIST_IS_LOOP,
     };
 
     const int SIZE_LIST = 10;
@@ -38,13 +39,21 @@
 
     err_t ListAddAfter (list_t* List, int anch, int value);
 
+    err_t ListAddBefore (list_t* List, int anch, int value);
+
     err_t ListAddFairy (list_t* List, int value);
 
     err_t ListAddTail (list_t* List, int value);
 
     err_t ListDel (list_t* List, int anch);
 
+    err_t ClearList (list_t* List);
+
     int FindFreeSell (list_t List);
+
+    int FindInListValue (list_t List, int value);
+
+    //int FindInListIndex (list_t List, int value);
 
     void Pause ();
 #endif
