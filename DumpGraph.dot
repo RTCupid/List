@@ -33,8 +33,5 @@ digraph G {
 	node006 -> node007 [weight=0; color="#659DBD"; ];
 	node007 -> node008 [weight=0; color="#659DBD"; ];
 	node008 -> node009 [weight=0; color="#659DBD"; ];
-
-	node001 -> node000 [weight=0; color="#DAAD86"; constraint=false; ];
-	node000 -> node001 [weight=0; color="#DAAD86"; constraint=false; ];
 	free -> node002 [weight=0; splines=ortho; constraint=false; ]; 
 }

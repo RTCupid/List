@@ -9,11 +9,9 @@
 
     void MakeAllNodes (list_t List, FILE* dot_file);
 
-    void MakeBasicArrow (FILE* dot_file);
+    void MakeBasicArrows (FILE* dot_file);
 
-    void MakeNextArrow (FILE* dot_file, list_t List);
-
-    void MakePrevArrow (FILE* dot_file, list_t List);
+    void MakeArrows (FILE* dot_file, list_t List);
 
     void PaintAnch (int anch, FILE* dot_file, list_t List);
 #endif

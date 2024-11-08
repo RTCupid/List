@@ -1,5 +1,7 @@
 #include <stdio.h>
+
 #include "List.h"
+#include "ListDump.h"
 
 int main ()
 {
@@ -28,6 +30,11 @@ int main ()
     int index = FindInListValue (List, 900);
     //fprintf (List.log_file, "index of 900 = %d\n", index);
     FindInListValue (List, 1900);
+
+    //List.next[4] = 7;
+
+    //char name[] = "abcd";
+    //ListDump (List, name, -1);
 
     ListAddBefore (&List, index, 905);
 
