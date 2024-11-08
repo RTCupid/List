@@ -4,8 +4,8 @@
 
 #include "List.h"
 
-#include "Stack/Stack.cpp"
-#include "Stack/Stack_Error_Checking.cpp"
+////#include "Stack/Stack.cpp"
+////#include "Stack/Stack_Error_Checking.cpp"
 
 errlst_t ListCtor (list_t* List)
 {
@@ -26,29 +26,27 @@ errlst_t ListCtor (list_t* List)
 
     List->prev = (int*) calloc (SIZE_LIST, sizeof (int));
 
-    List->free = {};
-
-    StackCtor (&List->free, SIZE_FREE);
-
     //printf ("SIZE_FREE = %d\n", SIZE_FREE);
 
-    for (int i = SIZE_FREE; i > 0; i--)
+    for (int i = 1; i < SIZE_FREE; i++)
     {
-        //printf ("i = %d\n", i);
-        assert (i > 0);
-        List->next[i] = -1;
+        List->next[i] = i + 1;
         List->prev[i] = -1;
-        StackPush (&List->free, i);
     }
+    List->next[SIZE_FREE] = -1;
+    List->prev[SIZE_FREE] = -1;
+
     List->next[0] = 0;
     List->prev[0] = 0;
+
+    List->free = 1;
 
     //StackDump (&List->free);
 
     fprintf (List->log_file, "List constructed!\n");
     char nameFunc[50] = {};
     sprintf (nameFunc, "ListCtor");
-    ListDump (*List, nameFunc);
+    ListDump (*List, nameFunc, -1);
     PS Pause ();
     return LIST_OK;
 }
@@ -63,8 +61,6 @@ errlst_t ListDtor (list_t* List)
 
     free (List->prev);
     List->prev = NULL;
-
-    StackDtor (&List->free);
 
     fprintf (List->log_file, "<center>List is destroy!</center>\n");
 
@@ -88,15 +84,15 @@ errlst_t ListAddAfter (list_t* List, int anch, int value)
         return UNCORRECT_ANCHOR;
     }
 
-    int indFree = 0;
-    StackPop (&List->free, &indFree);
-    //fprintf (List->log_file, "indFree = %d\n", indFree);
+    int indFree = List->free;
+    List->free = List->next[List->free];
+
     if (indFree == -1)
     {
         char nameError[100] = {};
         sprintf (nameError, "Func ListAddAfter anch = %d:\n"
                             "ERROR: not enough memory", anch);
-        ListDump (*List, nameError);
+        ListDump (*List, nameError, anch);
         return NOT_ENOUGH_MEMORY;
     }
 
@@ -110,7 +106,7 @@ errlst_t ListAddAfter (list_t* List, int anch, int value)
 
     char nameFunc[50] = {};
     sprintf (nameFunc, "ListAddAfter anch = %d", anch);
-    ListDump (*List, nameFunc);
+    ListDump (*List, nameFunc, anch);
     PS Pause ();
     return LIST_OK;
 }
@@ -155,45 +151,37 @@ errlst_t ListDel (list_t* List, int anch)
     List->next[List->prev[anch]] = List->next[anch];
     List->prev[List->next[anch]] = List->prev[anch];
 
-    List->next[anch] = -1;
     List->prev[anch] = -1;
-
-    StackPush (&List->free, anch);
+    List->next[anch] = List->free;
+    List->free = anch;
 
     char nameFunc[50] = {};
     sprintf (nameFunc, "ListDel anch = %d", anch);
-    ListDump (*List, nameFunc);
+    ListDump (*List, nameFunc, (-1) * anch);
     PS Pause ();
     return LIST_OK;
 }
 
 errlst_t ClearList (list_t* List)
 {
-    List->next[0] = 0;
-    List->prev[0] = 0;
-    for (int i = SIZE_FREE; i > 0; i--)
+    for (int i = 1; i < SIZE_FREE; i++)
     {
         List->data[i] = 0;
-        List->next[i] = -1;
+        List->next[i] = i + 1;
         List->prev[i] = -1;
-        StackPush (&List->free, i);
     }
+    List->next[SIZE_FREE] = -1;
+    List->prev[SIZE_FREE] = -1;
+
+    List->next[0] = 0;
+    List->prev[0] = 0;
+
+    List->free = 1;
+
     char nameFunc[50] = {};
     sprintf (nameFunc, "ClearList");
-    ListDump (*List, nameFunc);
+    ListDump (*List, nameFunc, -1);
     return LIST_OK;
-}
-
-int FindFreeSell (list_t List)
-{
-    for (int index = 1; index < SIZE_LIST; index++)
-    {
-        if (List.next[index] == -1)
-        {
-            return index;
-        }
-    }
-    return -1;
 }
 
 int FindInListValue (list_t List, int value)
@@ -215,7 +203,7 @@ int FindInListValue (list_t List, int value)
         {
             char nameFunc[50] = {};
             sprintf (nameFunc, "FindInListValue value = <%d>", value);
-            ListDump (List, nameFunc);
+            ListDump (List, nameFunc, -1);
             fprintf (List.log_file, "index of value<%d> = %d\n", value, index);
             return index;
         }
@@ -227,7 +215,7 @@ int FindInListValue (list_t List, int value)
 
     char nameFunc[50] = {};
     sprintf (nameFunc, "FindInListValue value = <%d>", value);
-    ListDump (List, nameFunc);
+    ListDump (List, nameFunc, -1);
     fprintf (List.log_file, "value <%d> was not found in the List\n", value);
     return 0;
 }
