@@ -61,19 +61,8 @@ errlst_t MakeDotFile (list_t List, int anch)
             PrintNode (i, List, dot_file, color);
         }
     }
-    if (anch != -1)
-    {
-        if (anch >= 0)
-        {
-            char color[] = "\"#ADDF25\"";
-            PrintNode (anch, List, dot_file, color);
-        }
-        else
-        {
-            char color[] = "\"#F79191\"";
-            PrintNode ((-1) * anch, List, dot_file, color);
-        }
-    }
+
+    PaintAnch (anch, dot_file, List);
 
     fprintf (dot_file, "\n");
 
@@ -123,4 +112,21 @@ void PrintNode (int i, list_t List, FILE* dot_file, char color[12])
                                           "{next: %3d} |"
                                           "{prev: %3d} \" ];\n",
                                 i, color, i, List.data[i], List.next[i], List.prev[i]);
+}
+
+void PaintAnch (int anch, FILE* dot_file, list_t List)
+{
+    if (anch != -1)
+        {
+            if (anch >= 0)
+            {
+                char color[] = "\"#ADDF25\"";
+                PrintNode (anch, List, dot_file, color);
+            }
+            else
+            {
+                char color[] = "\"#F79191\"";
+                PrintNode ((-1) * anch, List, dot_file, color);
+            }
+        }
 }
