@@ -5,10 +5,10 @@
 #include "List.h"
 #include "ListDump.h"
 
-static int numpng = 111;
 
 errlst_t ListDump (list_t List, char* nameLastFunc, int anch)
 {
+    static int numpng = 111;
     fprintf (List.log_file, "<FONT SIZE=\"6\"><center>Dump of List:</center><FONT SIZE=\"5\">\n");
     fprintf (List.log_file, "<center>Last operation \"%s\"</center>\n\n", nameLastFunc);
 
@@ -48,7 +48,7 @@ errlst_t MakeDotFile (list_t List, int anch)
     /*......OTHER......*/
     MakeArrows (dot_file, List);
 
-    fprintf (dot_file, "\tfree -> node%03d [weight=0; splines=ortho; constraint=false; ]; \n", List.free);
+    fprintf (dot_file, "\tHEADER:<free> -> node%03d [weight=0; splines=ortho; constraint=false; ]; \n", List.free);
 
     fprintf (dot_file, "}\n");
     fclose (dot_file);
@@ -88,7 +88,7 @@ void MakeAllNodes (list_t List, FILE* dot_file)
     {
         if (i == 0)
         {
-            fprintf (dot_file, "\tfree [shape=Mrecord; style=filled; label = \" free: %d\" ];\n", List.free);
+            fprintf (dot_file, "\tHEADER [shape=Mrecord; style=filled; label = \"size of list: %d | <free> free: %d \" ];\n",  SIZE_LIST, List.free);
             fprintf (dot_file, "\tnode000 [shape=Mrecord; style=filled; color=\"#DAAD86\";"
                        " label = \"{ ip: %03d}  | {value: %3d} |"
                                   "{Fairy: %3d} | {Tail: %3d} \" ];\n",
@@ -131,13 +131,13 @@ void MakeArrows (FILE* dot_file, list_t List)
             {
                 if (List.prev[List.next[i]] == i)
                 {
-                    fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#999900\"; ];\n", i, List.next[i]);
+                    fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; dir=both; color=\"#999900\"; ];\n", i, List.next[i]);
                 }
                 else
                 {
-                    fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#971FDE\"; ];\n", i, List.next[i]);
+                    fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; stile=bold; color=\"#971FDE\"; ];\n", i, List.next[i]);
 
-                    fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#E11A54\"; constraint=false; ];\n", i, List.prev[i]);
+                    fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; stile=bold; color=\"#E11A54\"; constraint=false; ];\n", i, List.prev[i]);
                 }
             }
             else

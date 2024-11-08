@@ -31,10 +31,10 @@ int main ()
     //fprintf (List.log_file, "index of 900 = %d\n", index);
     FindInListValue (List, 1900);
 
-    //List.next[4] = 7;
+    List.next[4] = 7;
 
-    //char name[] = "abcd";
-    //ListDump (List, name, -1);
+    char name[] = "abcd";
+    ListDump (List, name, -1);
 
     ListAddBefore (&List, index, 905);
 
