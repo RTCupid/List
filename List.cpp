@@ -30,8 +30,12 @@ errlst_t ListCtor (list_t* List)
 
     StackCtor (&List->free, SIZE_FREE);
 
-    for (int i = 1; i < SIZE_LIST; i++)
+    //printf ("SIZE_FREE = %d\n", SIZE_FREE);
+
+    for (int i = SIZE_FREE; i > 0; i--)
     {
+        //printf ("i = %d\n", i);
+        assert (i > 0);
         List->next[i] = -1;
         List->prev[i] = -1;
         StackPush (&List->free, i);
@@ -39,7 +43,7 @@ errlst_t ListCtor (list_t* List)
     List->next[0] = 0;
     List->prev[0] = 0;
 
-    StackDump (&List->free);
+    //StackDump (&List->free);
 
     fprintf (List->log_file, "List constructed!\n");
     char nameFunc[50] = {};
@@ -84,7 +88,8 @@ errlst_t ListAddAfter (list_t* List, int anch, int value)
         return UNCORRECT_ANCHOR;
     }
 
-    int indFree = FindFreeSell (*List);
+    int indFree = 0;
+    StackPop (&List->free, &indFree);
     //fprintf (List->log_file, "indFree = %d\n", indFree);
     if (indFree == -1)
     {
@@ -153,6 +158,8 @@ errlst_t ListDel (list_t* List, int anch)
     List->next[anch] = -1;
     List->prev[anch] = -1;
 
+    StackPush (&List->free, anch);
+
     char nameFunc[50] = {};
     sprintf (nameFunc, "ListDel anch = %d", anch);
     ListDump (*List, nameFunc);
@@ -164,11 +171,12 @@ errlst_t ClearList (list_t* List)
 {
     List->next[0] = 0;
     List->prev[0] = 0;
-    for (int i = 1; i < SIZE_LIST; i++)
+    for (int i = SIZE_FREE; i > 0; i--)
     {
-        List->data[i] = -1;
+        List->data[i] = 0;
         List->next[i] = -1;
         List->prev[i] = -1;
+        StackPush (&List->free, i);
     }
     char nameFunc[50] = {};
     sprintf (nameFunc, "ClearList");

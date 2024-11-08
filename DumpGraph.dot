@@ -3,14 +3,14 @@ digraph G {
 	bgcolor="#FBEEC1"
 	node000 [shape=Mrecord; style=filled; color="#DAAD86"; label = "{ ip: 000}  | {value:   0} |{Fairy:   1} | {Tail:   1} " ];
 	node001 [shape=Mrecord; style=filled; color="#BC986A"; label = "{ ip: 001}  |{value: 910} |{next:   0} |{prev:   0} " ];
-	node002 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 002}  |{value:  -1} |{next:  -1} |{prev:  -1} " ];
-	node003 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 003}  |{value:  -1} |{next:  -1} |{prev:  -1} " ];
-	node004 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 004}  |{value:  -1} |{next:  -1} |{prev:  -1} " ];
-	node005 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 005}  |{value:  -1} |{next:  -1} |{prev:  -1} " ];
-	node006 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 006}  |{value:  -1} |{next:  -1} |{prev:  -1} " ];
-	node007 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 007}  |{value:  -1} |{next:  -1} |{prev:  -1} " ];
-	node008 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 008}  |{value:  -1} |{next:  -1} |{prev:  -1} " ];
-	node009 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 009}  |{value:  -1} |{next:  -1} |{prev:  -1} " ];
+	node002 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 002}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node003 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 003}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node004 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 004}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node005 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 005}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node006 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 006}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node007 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 007}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node008 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 008}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
+	node009 [shape=Mrecord; style=filled; color="#659DBD"; label = "{ ip: 009}  |{value:   0} |{next:  -1} |{prev:  -1} " ];
 
 	node000 -> node001 [style=bold; weight=1000; color="#FBEEC1"; ];
 	node001 -> node002 [style=bold; weight=1000; color="#FBEEC1"; ];
