@@ -3,6 +3,7 @@
 #include <assert.h>
 
 #include "List.h"
+#include "ListDump.h"
 
 static int numpng = 111;
 

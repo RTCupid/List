@@ -20,13 +20,13 @@ run: a.exe
 a.exe: List.o Dump.o Verificator.o main.o
 	$(CC) main.o List.o Dump.o Verificator.o -o a.exe $(FLAGS)
 
-Dump.o: ListDump.cpp List.h
+Dump.o: ListDump.cpp List.h ListDump.h
 	$(CC) -c ListDump.cpp -o Dump.o $(FLAGS)
 
 Verificator.o: Verificator.cpp List.h
 	$(CC) -c Verificator.cpp -o Verificator.o $(FLAGS)
 
-List.o: List.cpp List.h
+List.o: List.cpp List.h ListDump.h
 	$(CC) -c List.cpp -o List.o $(FLAGS)
 
 main.o: main.cpp List.h

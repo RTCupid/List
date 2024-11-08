@@ -32,16 +32,6 @@
 
     errlst_t ListDtor (list_t* List);
 
-    errlst_t ListDump (list_t List, char* nameLastFunc, int anch);
-
-    errlst_t MakeDotFile (list_t List, int anch);
-
-    void PrintNode (int i, list_t List, FILE* dot_file, char color[12]);
-
-    void MakeAllNodes (list_t List, FILE* dot_file);
-
-    void PaintAnch (int anch, FILE* dot_file, list_t List);
-
     errlst_t Verificator (list_t List);
 
     errlst_t ListAddAfter (list_t* List, int anch, int value);

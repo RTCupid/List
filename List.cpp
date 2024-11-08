@@ -3,6 +3,7 @@
 #include <assert.h>
 
 #include "List.h"
+#include "ListDump.h"
 
 ////#include "Stack/Stack.cpp"
 ////#include "Stack/Stack_Error_Checking.cpp"
