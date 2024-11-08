@@ -62,17 +62,17 @@ errlst_t MakeDotFile (list_t List)
         fprintf (dot_file, "\tnode%03d -> node%03d [style=bold; weight=1000; color=\"#FBEEC1\"; ];\n", i, i + 1);
     }
     fprintf (dot_file, "\n"); //next
-    for (int i = 1; i < SIZE_LIST - 1; i++)
+    for (int i = 0; i < SIZE_LIST; i++)
     {
-        if (List.next[i] != -1 && List.next[i] != 0)
+        if (List.next[i] != -1)
         {
             fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#999900\"; ];\n", i, List.next[i]);
         }
     }
     fprintf (dot_file, "\n"); //prev
-    for (int i = SIZE_LIST - 1; i > 0; i--)
+    for (int i = SIZE_LIST - 1; i >= 0; i--)
     {
-        if (List.prev[i] != -1 && List.prev[i] != 0)
+        if (List.prev[i] != -1)
         {
             fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#DAAD86\"; constraint=false; ];\n", i, List.prev[i]);
         }

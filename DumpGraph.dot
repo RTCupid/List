@@ -22,5 +22,9 @@ digraph G {
 	node007 -> node008 [style=bold; weight=1000; color="#FBEEC1"; ];
 	node008 -> node009 [style=bold; weight=1000; color="#FBEEC1"; ];
 
+	node000 -> node001 [weight=0; color="#999900"; ];
+	node001 -> node000 [weight=0; color="#999900"; ];
 
+	node001 -> node000 [weight=0; color="#DAAD86"; constraint=false; ];
+	node000 -> node001 [weight=0; color="#DAAD86"; constraint=false; ];
 }
