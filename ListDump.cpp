@@ -43,36 +43,14 @@ errlst_t MakeDotFile (list_t List, int anch)
     fprintf (dot_file, "\n");
 
     /*......BASE......*/
-
-    for (int i = 0; i < SIZE_LIST - 1; i++)
-    {
-        fprintf (dot_file, "\tnode%03d -> node%03d [style=bold; weight=1000; color=\"#FBEEC1\"; ];\n", i, i + 1);
-    }
-    fprintf (dot_file, "\n");
+    MakeBasicArrow (dot_file);
 
     /*......NEXT......*/
-
-    for (int i = 0; i < SIZE_LIST; i++)
-    {
-        if (List.next[i] != -1)
-        {
-            if (List.prev[i] != -1)
-                fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#999900\"; ];\n", i, List.next[i]);
-            else
-                fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#659DBD\"; ];\n", i, List.next[i]);
-        }
-    }
-    fprintf (dot_file, "\n");
+    MakeNextArrow (dot_file, List);
 
     /*......PREV......*/
+    MakePrevArrow (dot_file, List);
 
-    for (int i = SIZE_LIST - 1; i >= 0; i--)
-    {
-        if (List.prev[i] != -1)
-        {
-            fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#DAAD86\"; constraint=false; ];\n", i, List.prev[i]);
-        }
-    }
     fprintf (dot_file, "\tfree -> node%03d [weight=0; splines=ortho; constraint=false; ]; \n", List.free);
 
     fprintf (dot_file, "}\n");
@@ -133,6 +111,41 @@ void MakeAllNodes (list_t List, FILE* dot_file)
         {
             char color[] = "\"#BC986A\"";
             PrintNode (i, List, dot_file, color);
+        }
+    }
+}
+
+void MakeBasicArrow (FILE* dot_file)
+{
+    for (int i = 0; i < SIZE_LIST - 1; i++)
+    {
+        fprintf (dot_file, "\tnode%03d -> node%03d [style=bold; weight=1000; color=\"#FBEEC1\"; ];\n", i, i + 1);
+    }
+    fprintf (dot_file, "\n");
+}
+
+void MakeNextArrow (FILE* dot_file, list_t List)
+{
+    for (int i = 0; i < SIZE_LIST; i++)
+    {
+        if (List.next[i] != -1)
+        {
+            if (List.prev[i] != -1)
+                fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#999900\"; ];\n", i, List.next[i]);
+            else
+                fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#659DBD\"; ];\n", i, List.next[i]);
+        }
+    }
+    fprintf (dot_file, "\n");
+}
+
+void MakePrevArrow (FILE* dot_file, list_t List)
+{
+    for (int i = SIZE_LIST - 1; i >= 0; i--)
+    {
+        if (List.prev[i] != -1)
+        {
+            fprintf (dot_file, "\tnode%03d -> node%03d [weight=0; color=\"#DAAD86\"; constraint=false; ];\n", i, List.prev[i]);
         }
     }
 }
