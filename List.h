@@ -10,7 +10,7 @@
         int* data;
         int* next;
         int* prev;
-
+        stack_t free;
         FILE* log_file;
     } list_t;
 
@@ -26,6 +26,7 @@
     };
 
     const int SIZE_LIST = 10;
+    const int SIZE_FREE = SIZE_LIST - 1;
 
     errlst_t ListCtor (list_t* List);
 

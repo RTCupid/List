@@ -26,13 +26,20 @@ errlst_t ListCtor (list_t* List)
 
     List->prev = (int*) calloc (SIZE_LIST, sizeof (int));
 
+    List->free = {};
+
+    StackCtor (&List->free, SIZE_FREE);
+
     for (int i = 1; i < SIZE_LIST; i++)
     {
         List->next[i] = -1;
         List->prev[i] = -1;
+        StackPush (&List->free, i);
     }
     List->next[0] = 0;
     List->prev[0] = 0;
+
+    StackDump (&List->free);
 
     fprintf (List->log_file, "List constructed!\n");
     char nameFunc[50] = {};
@@ -52,6 +59,8 @@ errlst_t ListDtor (list_t* List)
 
     free (List->prev);
     List->prev = NULL;
+
+    StackDtor (&List->free);
 
     fprintf (List->log_file, "<center>List is destroy!</center>\n");
 
