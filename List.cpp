@@ -4,7 +4,10 @@
 
 #include "List.h"
 
-err_t ListCtor (list_t* List)
+#include "Stack/Stack.cpp"
+#include "Stack/Stack_Error_Checking.cpp"
+
+errlst_t ListCtor (list_t* List)
 {
     List->log_file = fopen ("Log_file.htm", "wt");
     if (List->log_file == NULL)
@@ -39,7 +42,7 @@ err_t ListCtor (list_t* List)
     return LIST_OK;
 }
 
-err_t ListDtor (list_t* List)
+errlst_t ListDtor (list_t* List)
 {
     free (List->data);
     List->data = NULL;
@@ -57,9 +60,9 @@ err_t ListDtor (list_t* List)
     return LIST_OK;
 }
 
-err_t ListAddAfter (list_t* List, int anch, int value)
+errlst_t ListAddAfter (list_t* List, int anch, int value)
 {
-    err_t error = Verificator (*List);
+    errlst_t error = Verificator (*List);
     if (error)
     {
         return error;
@@ -97,27 +100,27 @@ err_t ListAddAfter (list_t* List, int anch, int value)
     PS Pause ();
     return LIST_OK;
 }
-err_t ListAddFairy (list_t* List, int value)
+errlst_t ListAddFairy (list_t* List, int value)
 {
-    err_t error = ListAddAfter (List, 0, value);
+    errlst_t error = ListAddAfter (List, 0, value);
     return error;
 }
 
-err_t ListAddTail (list_t* List, int value)
+errlst_t ListAddTail (list_t* List, int value)
 {
-    err_t error = ListAddAfter (List, List->prev[0], value);
+    errlst_t error = ListAddAfter (List, List->prev[0], value);
     return error;
 }
 
-err_t ListAddBefore (list_t* List, int anch, int value)
+errlst_t ListAddBefore (list_t* List, int anch, int value)
 {
-    err_t error = ListAddAfter (List, List->prev[anch], value);
+    errlst_t error = ListAddAfter (List, List->prev[anch], value);
     return error;
 }
 
-err_t ListDel (list_t* List, int anch)
+errlst_t ListDel (list_t* List, int anch)
 {
-    err_t error = Verificator (*List);
+    errlst_t error = Verificator (*List);
     if (error)
     {
         return error;
@@ -148,7 +151,7 @@ err_t ListDel (list_t* List, int anch)
     return LIST_OK;
 }
 
-err_t ClearList (list_t* List)
+errlst_t ClearList (list_t* List)
 {
     List->next[0] = 0;
     List->prev[0] = 0;
@@ -178,7 +181,7 @@ int FindFreeSell (list_t List)
 
 int FindInListValue (list_t List, int value)
 {
-    err_t error = Verificator (List);
+    errlst_t error = Verificator (List);
     if (error)
     {
         return error;

@@ -1,16 +1,20 @@
 #ifndef LIST_H
     #define LIST_H
 
+    #include "Stack/Config.h"
+    #include "Stack/Stack.h"
+
     #define PS if(0)
     typedef struct
     {
         int* data;
         int* next;
         int* prev;
+
         FILE* log_file;
     } list_t;
 
-    enum err_t
+    enum errlst_t
     {
         LIST_OK,
         UNCORRECT_ANCHOR = 1,
@@ -23,29 +27,29 @@
 
     const int SIZE_LIST = 10;
 
-    err_t ListCtor (list_t* List);
+    errlst_t ListCtor (list_t* List);
 
-    err_t ListDtor (list_t* List);
+    errlst_t ListDtor (list_t* List);
 
-    err_t ListDump (list_t List, char* nameLastFunc);
+    errlst_t ListDump (list_t List, char* nameLastFunc);
 
-    err_t MakeDotFile (list_t List);
+    errlst_t MakeDotFile (list_t List);
 
     void PrintNode (int i, list_t List, FILE* dot_file, char color[12]);
 
-    err_t Verificator (list_t List);
+    errlst_t Verificator (list_t List);
 
-    err_t ListAddAfter (list_t* List, int anch, int value);
+    errlst_t ListAddAfter (list_t* List, int anch, int value);
 
-    err_t ListAddBefore (list_t* List, int anch, int value);
+    errlst_t ListAddBefore (list_t* List, int anch, int value);
 
-    err_t ListAddFairy (list_t* List, int value);
+    errlst_t ListAddFairy (list_t* List, int value);
 
-    err_t ListAddTail (list_t* List, int value);
+    errlst_t ListAddTail (list_t* List, int value);
 
-    err_t ListDel (list_t* List, int anch);
+    errlst_t ListDel (list_t* List, int anch);
 
-    err_t ClearList (list_t* List);
+    errlst_t ClearList (list_t* List);
 
     int FindFreeSell (list_t List);
 

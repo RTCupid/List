@@ -6,7 +6,7 @@
 
 static int numpng = 111;
 
-err_t ListDump (list_t List, char* nameLastFunc)
+errlst_t ListDump (list_t List, char* nameLastFunc)
 {
     fprintf (List.log_file, "<FONT SIZE=\"6\"><center>Dump of List:</center><FONT SIZE=\"5\">\n");
     fprintf (List.log_file, "<center>Last operation \"%s\"</center>\n\n", nameLastFunc);
@@ -27,7 +27,7 @@ err_t ListDump (list_t List, char* nameLastFunc)
     return LIST_OK;
 }
 
-err_t MakeDotFile (list_t List)
+errlst_t MakeDotFile (list_t List)
 {
     FILE* dot_file = fopen ("DumpGraph.dot", "wt");
 

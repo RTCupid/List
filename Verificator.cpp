@@ -4,7 +4,7 @@
 
 #include "List.h"
 
-err_t Verificator (list_t List)
+errlst_t Verificator (list_t List)
 {
     int index = 0;
     int size = 0;
