@@ -35,14 +35,17 @@ errlst_t MakeDotFile (list_t List)
     fprintf (dot_file, "\trankdir = LR;\n");
     fprintf (dot_file, "\tbgcolor=\"#FBEEC1\"\n");
 
-    fprintf (dot_file, "\tnode000 [shape=Mrecord; style=filled; color=\"#DAAD86\";"
+    for (int i = 0; i < SIZE_LIST; i++)
+    {
+        if (i == 0)
+        {
+            fprintf (dot_file, "\tnode000 [shape=Mrecord; style=filled; color=\"#DAAD86\";"
                        " label = \"{ ip: %03d}  | {value: %3d} |"
                                   "{Fairy: %3d} | {Tail: %3d} \" ];\n",
                                    0, List.data[0], List.next[0], List.prev[0]);
 
-    for (int i = 1; i < SIZE_LIST; i++)
-    {
-        if (List.prev[i] == -1)
+        }
+        else if (List.prev[i] == -1)
         {
             char color[] = "\"#659DBD\"";
             PrintNode (i, List, dot_file, color);
